@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Frontline Local — AI receptionists, chatbots, and websites for Sydney businesses</title>
+  <meta name="description" content="Sydney's AI front-desk for local services. Voice receptionist, website chatbot, and a website rebuild — bundled. Never miss a job again." />
+  <meta name="theme-color" content="#0A0A0F" />
+  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%23A855F7'/><circle cx='50' cy='50' r='12' fill='%230A0A0F'/></svg>" />
+ 
+  <!-- Fonts: Satoshi (logo/wordmark) + Instrument Serif (display) + JetBrains Mono (technical) + Manrope (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet" />
+ 
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+ 
+  <!-- Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+ 
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            satoshi: ['Satoshi', 'sans-serif'],
+            display: ['"Instrument Serif"', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['Manrope', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            ink: '#0A0A0F',
+            ink2: '#101018',
+            line: 'rgba(255,255,255,0.08)',
+            bone: '#F4F1EA',
+            volt: '#A855F7',
+            volt2: '#7C3AED',
+            voltdim: 'rgba(168,85,247,0.16)',
+            ember: '#F65E2A',
+          },
+        },
+      },
+    };
+  </script>
+ 
+  <style>
+    :root {
+      --ink: #0A0A0F;
+      --ink-2: #101018;
+      --line: rgba(255,255,255,0.08);
+      --line-strong: rgba(255,255,255,0.16);
+      --bone: #F4F1EA;
+      --volt: #A855F7;
+      --volt-2: #7C3AED;
+      --volt-dim: rgba(168,85,247,0.16);
+      --volt-glow: rgba(168,85,247,0.45);
+      --ember: #F65E2A;
+      --text: #ECECEC;
+      --text-dim: #A1A1A8;
+      --text-faint: #6B6B74;
+    }
+ 
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--ink);
+      color: var(--text);
+      font-family: 'Manrope', system-ui, sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    /* Satoshi utility — logo/wordmark only */
+    .font-satoshi { font-family: 'Satoshi', sans-serif; }
+ 
+    /* Grain texture */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.06;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    }
+ 
+    /* Cursor-following purple glow */
+    .cursor-glow {
+      position: fixed;
+      width: 600px; height: 600px;
+      border-radius: 9999px;
+      background: radial-gradient(circle, var(--volt-glow) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.4s ease;
+      opacity: 0;
+      filter: blur(60px);
+    }
+    @media (hover:hover) {
+      .cursor-glow { opacity: 0.55; }
+    }
+ 
+    /* Animated background gradient mesh */
+    .mesh-bg {
+      position: absolute;
+      inset: -10%;
+      pointer-events: none;
+      background:
+        radial-gradient(at 18% 22%, rgba(168,85,247,0.18) 0px, transparent 45%),
+        radial-gradient(at 82% 18%, rgba(124,58,237,0.14) 0px, transparent 50%),
+        radial-gradient(at 50% 90%, rgba(168,85,247,0.10) 0px, transparent 55%);
+      animation: meshDrift 22s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+    @keyframes meshDrift {
+      0%   { transform: translate(0,0) scale(1); }
+      100% { transform: translate(-3%, 2%) scale(1.05); }
+    }
+ 
+    /* Glass card */
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .glass-strong {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.03) 100%);
+      border: 1px solid var(--line-strong);
+      backdrop-filter: blur(20px) saturate(160%);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+ 
+    /* Glowing border on hover */
+    .glow-card { position: relative; transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1); }
+    .glow-card::before {
+      content: "";
+      position: absolute; inset: -1px;
+      border-radius: 20px;
+      padding: 1px;
+      background: linear-gradient(135deg, transparent 30%, var(--volt) 50%, transparent 70%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .glow-card:hover::before { opacity: 1; }
+    .glow-card:hover { transform: translateY(-2px); }
+ 
+    /* Headline display style */
+    .display {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 0.95;
+    }
+    .display em {
+      font-style: italic;
+      color: var(--volt);
+    }
+ 
+    /* Mono label */
+    .mono-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+ 
+    /* CTA buttons */
+    .btn-primary {
+      background: var(--volt);
+      color: #fff;
+      border-radius: 9999px;
+      padding: 14px 28px;
+      font-weight: 600;
+      font-size: 15px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 14px 40px -12px var(--volt-glow);
+      transition: all 0.3s cubic-bezier(0.2,0.8,0.2,1);
+      display: inline-flex; align-items: center; gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary:hover {
+      background: var(--volt-2);
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 22px 50px -10px var(--volt-glow);
+    }
+    .btn-primary::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.7s ease;
+    }
+    .btn-primary:hover::after { transform: translateX(100%); }
+ 
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--line-strong);
+      border-radius: 9999px;
+      padding: 14px 28px;
+      font-weight: 500;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-secondary:hover {
+      border-color: var(--volt);
+      color: var(--volt);
+    }
+ 
+    /* Service number */
+    .service-num {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 80px;
+      line-height: 1;
+      background: linear-gradient(180deg, var(--volt) 0%, transparent 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      opacity: 0.95;
+    }
+ 
+    /* Reveal animation system */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+      will-change: opacity, transform;
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal.delay-1 { transition-delay: 0.1s; }
+    .reveal.delay-2 { transition-delay: 0.2s; }
+    .reveal.delay-3 { transition-delay: 0.3s; }
+    .reveal.delay-4 { transition-delay: 0.4s; }
+    .reveal.delay-5 { transition-delay: 0.5s; }
+    .reveal.delay-6 { transition-delay: 0.6s; }
+ 
+    /* Section dividers */
+    .hairline {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+    }
+ 
+    /* Live status pulse */
+    .pulse-dot {
+      width: 8px; height: 8px;
+      background: #4ADE80;
+      border-radius: 9999px;
+      box-shadow: 0 0 0 0 rgba(74,222,128,0.6);
+      animation: pulse 2s ease-out infinite;
+    }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(74,222,128,0.6); }
+      70%  { box-shadow: 0 0 0 10px rgba(74,222,128,0); }
+      100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+    }
+ 
+    /* Decorative stamps */
+    .stamp {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+ 
+    /* Photo frame for founder */
+    .photo-frame {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .photo-frame::after {
+      content: "";
+      position: absolute; inset: 0;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1), inset 0 -120px 80px -60px rgba(10,10,15,0.8);
+      pointer-events: none;
+      border-radius: 14px;
+    }
+ 
+    /* Marquee */
+    .marquee {
+      display: flex;
+      gap: 64px;
+      animation: marquee 40s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-mask {
+      mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+      overflow: hidden;
+    }
+ 
+    /* Big quote treatment */
+    .pull-quote {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(28px, 4.5vw, 56px);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+ 
+    /* Sticky badge */
+    .nine-pm {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+    }
+ 
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .mesh-bg, .marquee, .pulse-dot { animation: none; }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased">
+ 
+  <div class="cursor-glow" id="cursorGlow"></div>
+ 
+  <!-- Sticky Sydney badge -->
+  <div class="fixed bottom-6 right-6 z-50 hidden md:flex items-center gap-2 glass px-4 py-2.5">
+    <span class="pulse-dot"></span>
+    <span class="nine-pm" id="liveClock">— LIVE · SYDNEY</span>
+  </div>
+ 
+  <!-- NAV -->
+  <nav class="fixed top-0 inset-x-0 z-40 backdrop-blur-xl bg-ink/70 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded-full relative overflow-hidden" style="background:var(--volt)">
+          <div class="absolute inset-1.5 rounded-full bg-ink"></div>
+        </div>
+        <span class="font-satoshi font-bold text-xl tracking-tight">Frontline Local</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-white/70">
+        <a href="#services" class="hover:text-white transition">Services</a>
+        <a href="#bundle" class="hover:text-white transition">Bundle</a>
+        <a href="#founder" class="hover:text-white transition">Founder</a>
+        <a href="#book" class="btn-primary !py-2 !px-5 !text-sm">Book a call →</a>
+      </div>
+      <a href="#book" class="md:hidden btn-primary !py-2 !px-4 !text-sm">Book →</a>
+    </div>
+  </nav>
+ 
+  <!-- HERO -->
+  <section class="relative pt-36 pb-20 lg:pt-44 lg:pb-32 overflow-hidden">
+    <div class="mesh-bg"></div>
+    <div class="relative max-w-6xl mx-auto px-6 lg:px-10">
+      <div class="reveal flex items-center gap-3 mb-10">
+        <div class="w-10 h-px bg-volt"></div>
+        <span class="mono-label">Sydney · 2026 · Founding Cohort Open</span>
+      </div>
+      <h1 class="reveal delay-1 display text-[44px] sm:text-6xl lg:text-8xl mb-8 max-w-5xl">
+        Your customers ring at <em>9pm Sunday</em>.<br/>
+        Your phone goes <em>silent</em>.<br/>
+        We fix that.
+      </h1>
+      <p class="reveal delay-2 text-lg lg:text-xl text-white/65 max-w-2xl mb-10 leading-relaxed">
+        Frontline Local builds the AI receptionist, chatbot, and website that actually answer for your business — across every channel, around the clock, in a real Australian voice.
+      </p>
+      <div class="reveal delay-3 flex flex-wrap items-center gap-3">
+        <a href="#book" class="btn-primary">Book a discovery call <span aria-hidden>→</span></a>
+        <a href="#services" class="btn-secondary">See how it works</a>
+      </div>
+      <div class="reveal delay-4 mt-20 grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/8">
+        <div class="bg-ink p-6">
+          <div class="font-display text-4xl lg:text-5xl mb-1" style="color:var(--volt)">62%</div>
+          <p class="text-xs text-white/50 leading-snug">of after-hours calls to local trades go unanswered</p>
+        </div>
+        <div class="bg-ink p-6">
+          <div class="font-display text-4xl lg:text-5xl mb-1">&lt;500ms</div>
+          <p class="text-xs text-white/50 leading-snug">voice response latency on every call</p>
+        </div>
+        <div class="bg-ink p-6">
+          <div class="font-display text-4xl lg:text-5xl mb-1">24/7</div>
+          <p class="text-xs text-white/50 leading-snug">coverage — including the calls you'd otherwise miss</p>
+        </div>
+        <div class="bg-ink p-6">
+          <div class="font-display text-4xl lg:text-5xl mb-1">5</div>
+          <p class="text-xs text-white/50 leading-snug">founding-cohort spots. Locked-in pricing for 12 months</p>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- MARQUEE -->
+  <section class="relative py-10 border-y border-white/5">
+    <div class="marquee-mask">
+      <div class="marquee text-2xl lg:text-3xl font-display text-white/30">
+        <span>Plumbers</span><span>·</span><span>Sparkies</span><span>·</span><span>Dentists</span><span>·</span>
+        <span>Lawyers</span><span>·</span><span>Salons</span><span>·</span><span>Real Estate</span><span>·</span>
+        <span>Locksmiths</span><span>·</span><span>HVAC</span><span>·</span><span>Builders</span><span>·</span>
+        <span>Pest Control</span><span>·</span><span>Cleaners</span><span>·</span>
+        <span>Plumbers</span><span>·</span><span>Sparkies</span><span>·</span><span>Dentists</span><span>·</span>
+        <span>Lawyers</span><span>·</span><span>Salons</span><span>·</span><span>Real Estate</span><span>·</span>
+        <span>Locksmiths</span><span>·</span><span>HVAC</span><span>·</span><span>Builders</span><span>·</span>
+        <span>Pest Control</span><span>·</span><span>Cleaners</span><span>·</span>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- SERVICES -->
+  <section id="services" class="relative py-24 lg:py-32">
+    <div class="mesh-bg" style="opacity:0.4"></div>
+    <div class="relative max-w-6xl mx-auto px-6 lg:px-10">
+      <div class="reveal flex items-center gap-3 mb-6">
+        <span class="mono-label">§ 01 — Triple Threat</span>
+      </div>
+      <h2 class="reveal delay-1 display text-4xl lg:text-7xl mb-20 max-w-4xl">
+        Three services. <em>One front desk</em> for everything inbound.
+      </h2>
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="reveal delay-2 glow-card glass p-8 lg:p-10 flex flex-col">
+          <div class="flex items-start justify-between mb-8">
+            <div class="service-num">01</div>
+            <i data-lucide="phone-call" class="w-6 h-6" style="color:var(--volt)"></i>
+          </div>
+          <span class="mono-label mb-3">Service 01 — Voice</span>
+          <h3 class="font-display text-3xl lg:text-4xl mb-5 leading-tight">AI Phone<br/>Receptionist</h3>
+          <p class="text-white/60 mb-7 leading-relaxed">High-urgency, voice-first response. Built on Vapi with sub-500ms Australian voices. Captures the lead, books the job, texts you in 60 seconds.</p>
+          <ul class="space-y-3 text-sm mt-auto">
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Never miss a 9pm call again</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Captures the lead, texts you in 60 seconds</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Sounds Australian. Sounds like staff.</span></li>
+          </ul>
+        </div>
+        <div class="reveal delay-3 glow-card glass p-8 lg:p-10 flex flex-col">
+          <div class="flex items-start justify-between mb-8">
+            <div class="service-num">02</div>
+            <i data-lucide="message-square" class="w-6 h-6" style="color:var(--volt)"></i>
+          </div>
+          <span class="mono-label mb-3">Service 02 — Chat</span>
+          <h3 class="font-display text-3xl lg:text-4xl mb-5 leading-tight">Conversational<br/>Chatbot</h3>
+          <p class="text-white/60 mb-7 leading-relaxed">A 24/7 web agent that handles FAQs and bookings while you're on the tools. Same business rules as the voice agent. Same SMS alerts. Different channel.</p>
+          <ul class="space-y-3 text-sm mt-auto">
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Answers customer questions while you're on the job</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Books the lead before they bounce</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Lives on your site. Your DMs. Your call.</span></li>
+          </ul>
+        </div>
+        <div class="reveal delay-4 glow-card glass p-8 lg:p-10 flex flex-col">
+          <div class="flex items-start justify-between mb-8">
+            <div class="service-num">03</div>
+            <i data-lucide="layout-template" class="w-6 h-6" style="color:var(--volt)"></i>
+          </div>
+          <span class="mono-label mb-3">Service 03 — Website</span>
+          <h3 class="font-display text-3xl lg:text-4xl mb-5 leading-tight">Conversion<br/>Website</h3>
+          <p class="text-white/60 mb-7 leading-relaxed">High-end, Linear-style sites built for speed and mobile-first trade leads. Replaces the 2014 template you've been embarrassed by.</p>
+          <ul class="space-y-3 text-sm mt-auto">
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Mobile-first, fast, built to be called</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Replaces what you've been embarrassed by</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Sydney-built. Sydney-tuned. Ranks where it counts.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- PULL QUOTE -->
+  <section class="relative py-24 lg:py-36 border-y border-white/5">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10 text-center">
+      <span class="reveal mono-label block mb-8">§ 02 — Why this matters</span>
+      <p class="reveal delay-1 pull-quote text-white/85">
+        "78% of customers go with the first business that <em style="font-style:italic;color:var(--volt)">actually answers.</em><br/>
+        The Aussie average is 47 hours."
+      </p>
+      <p class="reveal delay-2 mt-8 text-sm text-white/40 mono-label">— Industry data, 2025</p>
+    </div>
+  </section>
+ 
+  <!-- BUNDLE / PRICING -->
+  <section id="bundle" class="relative py-24 lg:py-32">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+      <div class="reveal flex items-center gap-3 mb-6">
+        <span class="mono-label">§ 03 — Founder Pricing</span>
+      </div>
+      <h2 class="reveal delay-1 display text-4xl lg:text-7xl mb-6 max-w-4xl">
+        Start with one. <em>Bundle the lot.</em>
+      </h2>
+      <p class="reveal delay-2 text-white/60 max-w-2xl mb-16 text-lg leading-relaxed">
+        First 5 Sydney clients get founder pricing — locked in for 12 months. After that, prices go up.
+      </p>
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="reveal delay-3 glow-card glass-strong p-8 lg:p-10 flex flex-col">
+          <span class="mono-label mb-3">Tier 01</span>
+          <h3 class="font-display text-3xl mb-2">Beta</h3>
+          <p class="text-white/50 text-sm mb-8">Test the waters. Just the voice agent.</p>
+          <div class="mb-2">
+            <span class="font-display text-5xl">From $500</span>
+            <span class="text-white/40 text-sm ml-2">setup</span>
+          </div>
+          <div class="text-white/60 mb-8 text-sm">+ $300/month ongoing</div>
+          <ul class="space-y-3 text-sm border-t border-white/10 pt-6 mb-8">
+            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>AI voice receptionist (Vapi + Australian voices)</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>SMS lead alerts to your mobile in 60 seconds</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>1 Australian Sydney number included</span></li>
+          </ul>
+          <a href="#book" class="btn-secondary mt-auto justify-center">Book a call →</a>
+        </div>
+        <div class="reveal delay-4 glow-card glass-strong p-8 lg:p-10 flex flex-col">
+          <span class="mono-label mb-3">Tier 02</span>
+          <h3 class="font-display text-3xl mb-2">Standard</h3>
+          <p class="text-white/50 text-sm mb-8">For most operators. Voice + scale.</p>
+          <div class="mb-2">
+            <span class="font-display text-5xl">From $1,500</span>
+            <span class="text-white/40 text-sm ml-2">setup</span>
+          </div>
+          <div class="text-white/60 mb-8 text-sm">+ $400/month ongoing</div>
+          <ul class="space-y-3 text-sm border-t border-white/10 pt-6 mb-8">
+            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>Everything in Beta, plus —</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>Multi-line setup (multiple staff numbers)</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>CRM integration (ServiceM8, Jobber, etc.)</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>Priority support</span></li>
+          </ul>
+          <a href="#book" class="btn-secondary mt-auto justify-center">Book a call →</a>
+        </div>
+        <div class="reveal delay-5 glow-card p-8 lg:p-10 flex flex-col relative" style="background:linear-gradient(180deg,rgba(168,85,247,0.12) 0%,rgba(168,85,247,0.03) 100%); border:1px solid rgba(168,85,247,0.4); border-radius:20px;">
+          <div class="absolute top-0 right-0 -mt-3 mr-6 px-3 py-1 text-[10px] font-mono tracking-widest uppercase rounded-full" style="background:var(--volt); color:#fff">
+            ★ Full Bundle
+          </div>
+          <span class="mono-label mb-3" style="color:var(--volt)">Tier 03</span>
+          <h3 class="font-display text-3xl mb-2">Premium</h3>
+          <p class="text-white/70 text-sm mb-8">The full triple-threat. Voice + Chat + Website.</p>
+          <div class="mb-2">
+            <span class="font-display text-5xl">$3,000</span>
+            <span class="text-white/50 text-sm ml-2">setup</span>
+          </div>
+          <div class="text-white/70 mb-8 text-sm">+ $700/month ongoing</div>
+          <ul class="space-y-3 text-sm border-t border-white/15 pt-6 mb-8">
+            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>Everything in Standard, plus —</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span><strong>Live calendar booking</strong> — customer self-books on the call</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span><strong>Website chatbot</strong> for lead capture during business hours</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span><strong>New website</strong> — Linear-style, mobile-first, built for conversion</span></li>
+          </ul>
+          <a href="#book" class="btn-primary mt-auto justify-center">Book a call →</a>
+        </div>
+      </div>
+      <p class="reveal delay-6 mt-10 text-center text-sm text-white/40 max-w-2xl mx-auto">
+        Want both add-ons on top of Standard? Premium is cheaper. We'll run the maths live on the call — no obligation.
+      </p>
+    </div>
+  </section>
+ 
+  <!-- FOUNDER -->
+  <section id="founder" class="relative py-24 lg:py-32 border-y border-white/5">
+    <div class="mesh-bg" style="opacity:0.5"></div>
+    <div class="relative max-w-6xl mx-auto px-6 lg:px-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="reveal lg:col-span-5">
+          <div class="photo-frame aspect-[4/5] bg-white/5">
+            <img src="founder.jpg" alt="Dylan, Founder of Frontline Local — pictured on a Sydney Piling work site" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <p class="stamp mt-4 flex items-center gap-2">
+            <span class="w-3 h-px bg-white/30"></span>
+            Sydney Piling, 2025 — Real work. Real understanding.
+          </p>
+        </div>
+        <div class="lg:col-span-7">
+          <div class="reveal delay-1 flex items-center gap-3 mb-6">
+            <span class="mono-label">§ 04 — Founder</span>
+          </div>
+          <h2 class="reveal delay-2 display text-4xl lg:text-6xl mb-10 leading-tight">
+            Worked the sites.<br/>
+            <em>Built the AI.</em>
+          </h2>
+          <div class="reveal delay-3 space-y-6 text-lg text-white/75 leading-relaxed max-w-2xl">
+            <p>Before this, I spent years on Sydney piling sites. Long days, missed calls, jobs lost to whoever picked up first — I know how that goes.</p>
+
+            <p>I got into AI because I wanted to build something that actually solved that. Not another agency selling vague "digital solutions." Just tools that answer the phone and don't drop the ball.</p>
+
+            <p class="text-white">That's the whole idea.</p>
+          </div>
+          <p class="reveal delay-4 mt-10 text-sm text-white/40">
+            Based in Sydney. Building for trades, dentists, lawyers, salons, and every local business that loses leads after 5pm.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- STACK -->
+  <section class="py-16 lg:py-20">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+      <p class="reveal mono-label text-center mb-10">— Built on infrastructure trusted by the world's top AI companies —</p>
+      <div class="reveal delay-1 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 opacity-50">
+        <span class="font-display text-2xl">Anthropic</span>
+        <span class="text-white/20">·</span>
+        <span class="font-mono text-lg uppercase tracking-widest">Vapi</span>
+        <span class="text-white/20">·</span>
+        <span class="font-display text-2xl italic">Twilio</span>
+        <span class="text-white/20">·</span>
+        <span class="font-sans font-bold text-xl tracking-tight">ElevenLabs</span>
+        <span class="text-white/20">·</span>
+        <span class="font-mono text-lg uppercase tracking-widest">Make</span>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- FINAL CTA -->
+  <section id="book" class="relative py-24 lg:py-36">
+    <div class="mesh-bg"></div>
+    <div class="relative max-w-4xl mx-auto px-6 lg:px-10 text-center">
+      <div class="reveal flex items-center justify-center gap-3 mb-8">
+        <span class="pulse-dot"></span>
+        <span class="mono-label">§ 05 — Founding cohort · 5 spots</span>
+      </div>
+      <h2 class="reveal delay-1 display text-5xl lg:text-8xl mb-8 leading-[0.95]">
+        Be one of the<br/>first <em>5</em>.
+      </h2>
+      <p class="reveal delay-2 text-lg text-white/60 max-w-xl mx-auto mb-12 leading-relaxed">
+        15-minute discovery call. No pitch deck, no hard sell. Just whether this fits your business — and what it would cost.
+      </p>
+      <div class="reveal delay-3 flex flex-wrap items-center justify-center gap-3 mb-10">
+        <a href="https://calendly.com/your-handle/discovery" class="btn-primary" target="_blank" rel="noopener">
+          Book a discovery call <span aria-hidden>→</span>
+        </a>
+        <a href="mailto:dylan@frontlinelocal.com.au" class="btn-secondary">
+          <i data-lucide="mail" class="w-4 h-4"></i> dylan@frontlinelocal.com.au
+        </a>
+      </div>
+      <p class="reveal delay-4 text-xs text-white/30 mono-label">No spam. No follow-up sequences. One human reply.</p>
+    </div>
+  </section>
+ 
+  <!-- FOOTER -->
+  <footer class="relative border-t border-white/5 py-12">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-full relative overflow-hidden" style="background:var(--volt)">
+            <div class="absolute inset-1.5 rounded-full bg-ink"></div>
+          </div>
+          <div>
+            <div class="font-satoshi font-bold text-xl">Frontline Local</div>
+            <p class="text-xs text-white/40 mt-0.5">Sydney's AI front desk for local services.</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-6 text-xs text-white/40">
+          <a href="#services" class="hover:text-white transition">Services</a>
+          <a href="#bundle" class="hover:text-white transition">Pricing</a>
+          <a href="#founder" class="hover:text-white transition">Founder</a>
+          <a href="#book" class="hover:text-white transition">Book a call</a>
+          <span>·</span>
+          <span class="font-mono">© 2026 · ABN registered · Sydney AU</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+ 
+  <script>
+    if (window.lucide) lucide.createIcons();
+ 
+    const glow = document.getElementById('cursorGlow');
+    let glowX = window.innerWidth / 2, glowY = window.innerHeight / 2;
+    let targetX = glowX, targetY = glowY;
+    document.addEventListener('mousemove', (e) => { targetX = e.clientX; targetY = e.clientY; });
+    function animateGlow() {
+      glowX += (targetX - glowX) * 0.08;
+      glowY += (targetY - glowY) * 0.08;
+      if (glow) glow.style.left = glowX + 'px';
+      if (glow) glow.style.top = glowY + 'px';
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+ 
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -4% 0px' });
+ 
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+ 
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.in)').forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 1.5) { el.classList.add('in'); io.unobserve(el); }
+      });
+    }, 2500);
+ 
+    function updateClock() {
+      const el = document.getElementById('liveClock');
+      if (!el) return;
+      const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Australia/Sydney' }));
+      const day = now.getDay();
+      const hour = now.getHours();
+      const min = now.getMinutes().toString().padStart(2, '0');
+      const dayNames = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+      const ampm = hour >= 12 ? 'PM' : 'AM';
+      const h12 = ((hour + 11) % 12) + 1;
+      const afterHours = hour >= 17 || hour < 8 || day === 0 || day === 6;
+      el.innerHTML = (afterHours ? '— AFTER HOURS · ' : '— LIVE · ') + dayNames[day] + ' ' + h12 + ':' + min + ' ' + ampm + ' SYD';
+    }
+    updateClock();
+    setInterval(updateClock, 30000);
+  </script>
+ 
+</body>
+</html>
