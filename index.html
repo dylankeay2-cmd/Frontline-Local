@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Frontline Local — AI receptionists, chatbots, and websites for Sydney businesses</title>
-  <meta name="description" content="Sydney's AI front-desk for local services. Voice receptionist, website chatbot, and a website rebuild — bundled. Never miss a job again." />
+  <title>Frontline Local — AI receptionists for Australian Trades</title>
+  <meta name="description" content="Sydney's AI front-desk built for trades. Voice receptionist, website chatbot, and a website rebuild — bundled. Never miss a job again." />
   <meta name="theme-color" content="#0A0A0F" />
   <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%23A855F7'/><circle cx='50' cy='50' r='12' fill='%230A0A0F'/></svg>" />
  
-  <!-- Fonts: Satoshi (logo/wordmark) + Instrument Serif (display) + JetBrains Mono (technical) + Manrope (body) -->
+  <!-- Fonts: Satoshi (headings/logo) + JetBrains Mono (labels) + Manrope (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,600,500,400&display=swap" rel="stylesheet" />
  
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -26,7 +26,7 @@
         extend: {
           fontFamily: {
             satoshi: ['Satoshi', 'sans-serif'],
-            display: ['"Instrument Serif"', 'serif'],
+            display: ['Satoshi', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
             sans: ['Manrope', 'system-ui', 'sans-serif'],
           },
@@ -158,11 +158,11 @@
     .glow-card:hover::before { opacity: 1; }
     .glow-card:hover { transform: translateY(-2px); }
  
-    /* Headline display style */
+    /* Headline display style — Satoshi bold */
     .display {
-      font-family: 'Instrument Serif', serif;
-      font-weight: 400;
-      letter-spacing: -0.02em;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.03em;
       line-height: 0.95;
     }
     .display em {
@@ -225,8 +225,8 @@
  
     /* Service number */
     .service-num {
-      font-family: 'Instrument Serif', serif;
-      font-style: italic;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 700;
       font-size: 80px;
       line-height: 1;
       background: linear-gradient(180deg, var(--volt) 0%, transparent 90%);
@@ -317,10 +317,11 @@
  
     /* Big quote treatment */
     .pull-quote {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 600;
       font-size: clamp(28px, 4.5vw, 56px);
       line-height: 1.1;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
     }
  
     /* Sticky badge */
@@ -330,6 +331,46 @@
       letter-spacing: 0.18em;
     }
  
+    /* Audio demo player */
+    .audio-play-btn {
+      width: 72px; height: 72px;
+      border-radius: 9999px;
+      background: var(--volt);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 0 16px rgba(168,85,247,0.12), 0 0 0 32px rgba(168,85,247,0.06);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .audio-play-btn:hover {
+      background: var(--volt-2);
+      box-shadow: 0 0 0 20px rgba(168,85,247,0.16), 0 0 0 40px rgba(168,85,247,0.08);
+      transform: scale(1.04);
+    }
+    .audio-play-btn.playing {
+      background: var(--volt-2);
+    }
+    /* SMS mockup */
+    .sms-bubble {
+      background: #1C1C1E;
+      border-radius: 18px 18px 4px 18px;
+      padding: 12px 16px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #ECECEC;
+      max-width: 260px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .sms-bubble-out {
+      background: #6B21A8;
+      border-radius: 18px 18px 18px 4px;
+      padding: 12px 16px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #fff;
+      max-width: 240px;
+      margin-left: auto;
+    }
     /* Reduce motion */
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
@@ -380,13 +421,30 @@
         We fix that.
       </h1>
       <p class="reveal delay-2 text-lg lg:text-xl text-white/65 max-w-2xl mb-10 leading-relaxed">
-        Frontline Local builds the AI receptionist, chatbot, and website that actually answer for your business — across every channel, around the clock, in a real Australian voice.
+        Frontline Local builds the AI receptionist, chatbot, and website that actually answer for your trade business — across every channel, around the clock, in a real Australian voice.
       </p>
       <div class="reveal delay-3 flex flex-wrap items-center gap-3">
         <a href="#book" class="btn-primary">Book a discovery call <span aria-hidden>→</span></a>
         <a href="#services" class="btn-secondary">See how it works</a>
       </div>
-      <div class="reveal delay-4 mt-20 grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/8">
+
+      <!-- HEAR THE AI -->
+      <div class="reveal delay-4 mt-14 glass p-6 lg:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6 max-w-2xl">
+        <button class="audio-play-btn" id="audioPlayBtn" aria-label="Play AI receptionist demo">
+          <svg id="playIcon" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="pauseIcon" width="28" height="28" viewBox="0 0 24 24" fill="white" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <div>
+          <div class="mono-label mb-1">§ Demo — Hear the AI</div>
+          <p class="font-satoshi font-600 text-lg text-white mb-1">Australian-voiced receptionist</p>
+          <p class="text-sm text-white/50">Real call simulation — inbound trade enquiry, 9pm Sunday. This is what your customers hear instead of voicemail.</p>
+          <div class="mt-3 h-1 bg-white/10 rounded-full overflow-hidden w-full max-w-xs">
+            <div class="h-full bg-volt rounded-full transition-all duration-300" id="audioProgress" style="width:0%"></div>
+          </div>
+        </div>
+        <audio id="demoAudio" src="demo-call.mp3" preload="none"></audio>
+      </div>
+      <div class="reveal delay-5 mt-14 grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/8">
         <div class="bg-ink p-6">
           <div class="font-display text-4xl lg:text-5xl mb-1" style="color:var(--volt)">62%</div>
           <p class="text-xs text-white/50 leading-snug">of after-hours calls to local trades go unanswered</p>
@@ -411,14 +469,15 @@
   <section class="relative py-10 border-y border-white/5">
     <div class="marquee-mask">
       <div class="marquee text-2xl lg:text-3xl font-display text-white/30">
-        <span>Plumbers</span><span>·</span><span>Sparkies</span><span>·</span><span>Dentists</span><span>·</span>
-        <span>Lawyers</span><span>·</span><span>Salons</span><span>·</span><span>Real Estate</span><span>·</span>
-        <span>Locksmiths</span><span>·</span><span>HVAC</span><span>·</span><span>Builders</span><span>·</span>
-        <span>Pest Control</span><span>·</span><span>Cleaners</span><span>·</span>
-        <span>Plumbers</span><span>·</span><span>Sparkies</span><span>·</span><span>Dentists</span><span>·</span>
-        <span>Lawyers</span><span>·</span><span>Salons</span><span>·</span><span>Real Estate</span><span>·</span>
-        <span>Locksmiths</span><span>·</span><span>HVAC</span><span>·</span><span>Builders</span><span>·</span>
-        <span>Pest Control</span><span>·</span><span>Cleaners</span><span>·</span>
+        <span>Plumbers</span><span>·</span><span>Sparkies</span><span>·</span><span>Builders</span><span>·</span>
+        <span>HVAC</span><span>·</span><span>Roofers</span><span>·</span><span>Landscapers</span><span>·</span>
+        <span>Locksmiths</span><span>·</span><span>Concreters</span><span>·</span><span>Pest Control</span><span>·</span>
+        <span>Solar</span><span>·</span><span>Excavators</span><span>·</span><span>Tilers</span><span>·</span>
+        <!-- duplicate for seamless loop -->
+        <span>Plumbers</span><span>·</span><span>Sparkies</span><span>·</span><span>Builders</span><span>·</span>
+        <span>HVAC</span><span>·</span><span>Roofers</span><span>·</span><span>Landscapers</span><span>·</span>
+        <span>Locksmiths</span><span>·</span><span>Concreters</span><span>·</span><span>Pest Control</span><span>·</span>
+        <span>Solar</span><span>·</span><span>Excavators</span><span>·</span><span>Tilers</span><span>·</span>
       </div>
     </div>
   </section>
@@ -480,10 +539,64 @@
     </div>
   </section>
  
+  <!-- HOW IT WORKS -->
+  <section class="relative py-24 lg:py-32 border-t border-white/5">
+    <div class="mesh-bg" style="opacity:0.3"></div>
+    <div class="relative max-w-6xl mx-auto px-6 lg:px-10">
+      <div class="reveal flex items-center gap-3 mb-6">
+        <span class="mono-label">§ 02 — How it works</span>
+      </div>
+      <h2 class="reveal delay-1 display text-4xl lg:text-6xl mb-16 max-w-3xl">
+        Call comes in. Job's <em>captured</em>.<br/>You get a text.
+      </h2>
+      <div class="grid lg:grid-cols-3 gap-8 items-start">
+        <!-- Step 1 -->
+        <div class="reveal delay-2 flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-satoshi font-bold" style="background:var(--voltdim); border:1px solid rgba(168,85,247,0.3); color:var(--volt)">01</div>
+          <h3 class="font-satoshi font-bold text-xl">Customer calls after hours</h3>
+          <p class="text-white/55 text-sm leading-relaxed">Doesn't matter if it's 9pm or 5am Sunday. The AI answers in under 500ms with an Australian voice — sounds like your front desk, not a robot.</p>
+        </div>
+        <!-- Step 2 -->
+        <div class="reveal delay-3 flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-satoshi font-bold" style="background:var(--voltdim); border:1px solid rgba(168,85,247,0.3); color:var(--volt)">02</div>
+          <h3 class="font-satoshi font-bold text-xl">AI qualifies and captures the lead</h3>
+          <p class="text-white/55 text-sm leading-relaxed">Gets their name, job type, location, and urgency. Books them in if calendar is connected. Handles trade-specific questions — burst pipe, hot water system, switchboard, whatever.</p>
+        </div>
+        <!-- Step 3 + SMS mockup -->
+        <div class="reveal delay-4 flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-satoshi font-bold" style="background:var(--voltdim); border:1px solid rgba(168,85,247,0.3); color:var(--volt)">03</div>
+          <h3 class="font-satoshi font-bold text-xl">You get an SMS in 60 seconds</h3>
+          <p class="text-white/55 text-sm leading-relaxed mb-4">Straight to your phone. Full lead summary while it's still warm.</p>
+          <!-- SMS Phone mockup -->
+          <div class="glass p-5 rounded-2xl max-w-xs">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="w-2 h-2 rounded-full bg-green-400"></div>
+              <span class="text-xs text-white/40 font-mono">Frontline Local · SMS</span>
+            </div>
+            <div class="space-y-3">
+              <div class="sms-bubble">
+                📞 <strong>New lead — Plumber enquiry</strong><br/>
+                Name: <strong>Dave M.</strong><br/>
+                Job: Burst pipe, kitchen<br/>
+                Suburb: Parramatta<br/>
+                Urgency: ASAP<br/>
+                📱 0412 *** ***
+              </div>
+              <div class="sms-bubble-out text-sm">
+                On my way in 20 ✓
+              </div>
+            </div>
+            <p class="text-xs text-white/25 mt-3 font-mono">Today 9:04 PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PULL QUOTE -->
   <section class="relative py-24 lg:py-36 border-y border-white/5">
     <div class="max-w-5xl mx-auto px-6 lg:px-10 text-center">
-      <span class="reveal mono-label block mb-8">§ 02 — Why this matters</span>
+      <span class="reveal mono-label block mb-8">§ 03 — Why this matters</span>
       <p class="reveal delay-1 pull-quote text-white/85">
         "78% of customers go with the first business that <em style="font-style:italic;color:var(--volt)">actually answers.</em><br/>
         The Aussie average is 47 hours."
@@ -496,7 +609,7 @@
   <section id="bundle" class="relative py-24 lg:py-32">
     <div class="max-w-6xl mx-auto px-6 lg:px-10">
       <div class="reveal flex items-center gap-3 mb-6">
-        <span class="mono-label">§ 03 — Founder Pricing</span>
+        <span class="mono-label">§ 04 — Founder Pricing</span>
       </div>
       <h2 class="reveal delay-1 display text-4xl lg:text-7xl mb-6 max-w-4xl">
         Start with one. <em>Bundle the lot.</em>
@@ -540,11 +653,11 @@
         </div>
         <div class="reveal delay-5 glow-card p-8 lg:p-10 flex flex-col relative" style="background:linear-gradient(180deg,rgba(168,85,247,0.12) 0%,rgba(168,85,247,0.03) 100%); border:1px solid rgba(168,85,247,0.4); border-radius:20px;">
           <div class="absolute top-0 right-0 -mt-3 mr-6 px-3 py-1 text-[10px] font-mono tracking-widest uppercase rounded-full" style="background:var(--volt); color:#fff">
-            ★ Full Bundle
+            ★ Trade Growth Engine
           </div>
           <span class="mono-label mb-3" style="color:var(--volt)">Tier 03</span>
           <h3 class="font-display text-3xl mb-2">Premium</h3>
-          <p class="text-white/70 text-sm mb-8">The full triple-threat. Voice + Chat + Website.</p>
+          <p class="text-white/70 text-sm mb-8">The full engine. Phone answered, leads captured, site converting — all day, every day, while you're on the tools.</p>
           <div class="mb-2">
             <span class="font-display text-5xl">$3,000</span>
             <span class="text-white/50 text-sm ml-2">setup</span>
@@ -581,21 +694,19 @@
         </div>
         <div class="lg:col-span-7">
           <div class="reveal delay-1 flex items-center gap-3 mb-6">
-            <span class="mono-label">§ 04 — Founder</span>
+            <span class="mono-label">§ 05 — Founder</span>
           </div>
           <h2 class="reveal delay-2 display text-4xl lg:text-6xl mb-10 leading-tight">
             Worked the sites.<br/>
             <em>Built the AI.</em>
           </h2>
           <div class="reveal delay-3 space-y-6 text-lg text-white/75 leading-relaxed max-w-2xl">
-            <p>Before this, I spent years on Sydney piling sites. Long days, missed calls, jobs lost to whoever picked up first — I know how that goes.</p>
+            <p>I have worked on job sites. I am not just coming at this from a laptop in a co-working space. I know how these businesses run.</p>
 
-            <p>I got into AI because I wanted to build something that actually solved that. Not another agency selling vague "digital solutions." Just tools that answer the phone and don't drop the ball.</p>
-
-            <p class="text-white">That's the whole idea.</p>
+            <p class="text-white">Built for the tools. Runs while you use them.</p>
           </div>
           <p class="reveal delay-4 mt-10 text-sm text-white/40">
-            Based in Sydney. Building for trades, dentists, lawyers, salons, and every local business that loses leads after 5pm.
+            Based in Sydney. Building for plumbers, sparkies, builders, HVAC, roofers, and every trade that loses jobs after 5pm.
           </p>
         </div>
       </div>
@@ -626,7 +737,7 @@
     <div class="relative max-w-4xl mx-auto px-6 lg:px-10 text-center">
       <div class="reveal flex items-center justify-center gap-3 mb-8">
         <span class="pulse-dot"></span>
-        <span class="mono-label">§ 05 — Founding cohort · 5 spots</span>
+        <span class="mono-label">§ 06 — Founding cohort · 5 spots</span>
       </div>
       <h2 class="reveal delay-1 display text-5xl lg:text-8xl mb-8 leading-[0.95]">
         Be one of the<br/>first <em>5</em>.
@@ -656,7 +767,7 @@
           </div>
           <div>
             <div class="font-satoshi font-bold text-xl">Frontline Local</div>
-            <p class="text-xs text-white/40 mt-0.5">Sydney's AI front desk for local services.</p>
+            <p class="text-xs text-white/40 mt-0.5">Sydney's AI front desk for Australian trades.</p>
           </div>
         </div>
         <div class="flex flex-wrap items-center gap-6 text-xs text-white/40">
@@ -715,9 +826,43 @@
       const afterHours = hour >= 17 || hour < 8 || day === 0 || day === 6;
       el.innerHTML = (afterHours ? '— AFTER HOURS · ' : '— LIVE · ') + dayNames[day] + ' ' + h12 + ':' + min + ' ' + ampm + ' SYD';
     }
+    // Audio demo player
+    const audio = document.getElementById('demoAudio');
+    const playBtn = document.getElementById('audioPlayBtn');
+    const playIcon = document.getElementById('playIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
+    const progress = document.getElementById('audioProgress');
+    if (playBtn && audio) {
+      playBtn.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play().catch(() => {}); // graceful fail if no file
+          playIcon.style.display = 'none';
+          pauseIcon.style.display = 'block';
+          playBtn.classList.add('playing');
+        } else {
+          audio.pause();
+          playIcon.style.display = 'block';
+          pauseIcon.style.display = 'none';
+          playBtn.classList.remove('playing');
+        }
+      });
+      audio.addEventListener('timeupdate', () => {
+        if (audio.duration) {
+          progress.style.width = (audio.currentTime / audio.duration * 100) + '%';
+        }
+      });
+      audio.addEventListener('ended', () => {
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+        playBtn.classList.remove('playing');
+        progress.style.width = '0%';
+      });
+    }
+
     updateClock();
     setInterval(updateClock, 30000);
   </script>
  
 </body>
 </html>
+      
