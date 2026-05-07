@@ -179,6 +179,7 @@
       transition: border-color 0.15s;
     }
     #fl-input:focus { border-color: ${BRAND_COLOR}; }
+    #fl-input::placeholder { color: #111; opacity: 1; }
     #fl-send-btn {
       width: 38px;
       height: 38px;
