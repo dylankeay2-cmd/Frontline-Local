@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Frontline Local — AI receptionists for Australian Trades</title>
-  <meta name="description" content="Sydney's AI front-desk built for trades. Voice receptionist, website chatbot, and a website rebuild — bundled. Never miss a job again." />
+  <title>AI Receptionist for Tradies | Never Miss a Lead Again | Frontline Local</title>
+  <meta name="description" content="Book more jobs without lifting a finger. Our AI answers calls, quotes jobs & fills your calendar 24/7 — in a real Australian voice. Guaranteed results in 30 days or you don't pay." />
   <meta name="theme-color" content="#0A0A0F" />
   <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%23A855F7'/><circle cx='50' cy='50' r='12' fill='%230A0A0F'/></svg>" />
  
@@ -60,6 +60,8 @@
       --text: #ECECEC;
       --text-dim: #A1A1A8;
       --text-faint: #6B6B74;
+      --safety-orange: #FF6B00;
+      --safety-orange-hover: #E55A00;
     }
  
     html { scroll-behavior: smooth; }
@@ -222,6 +224,213 @@
       border-color: var(--volt);
       color: var(--volt);
     }
+
+    /* Safety orange primary CTAs */
+    .btn-orange {
+      background: var(--safety-orange);
+      color: #fff;
+      border-radius: 9999px;
+      padding: 14px 28px;
+      font-weight: 700;
+      font-size: 15px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 14px 40px -12px rgba(255,107,0,0.35);
+      transition: all 0.3s cubic-bezier(0.2,0.8,0.2,1);
+      display: inline-flex; align-items: center; gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-orange:hover {
+      background: var(--safety-orange-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 22px 50px -10px rgba(255,107,0,0.4);
+    }
+
+    .fl-urgency-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 60;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+      background: var(--safety-orange);
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.35;
+    }
+
+    .fl-nav-below-urgency {
+      top: 40px;
+    }
+
+    .fl-guarantee-section {
+      position: relative;
+      padding: 80px 0;
+      background: rgba(255,255,255,0.04);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* Missed revenue calculator */
+    .fl-calc-field label,
+    .fl-calc-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .fl-calc-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .fl-calc-row .fl-range { flex: 1; min-width: 120px; }
+    .fl-calc-num {
+      width: 4.5rem;
+      flex-shrink: 0;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 8px 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      text-align: center;
+      outline: none;
+    }
+    .fl-calc-num:focus {
+      border-color: rgba(255,107,0,0.55);
+    }
+    .fl-calc-dollar {
+      position: relative;
+    }
+    .fl-calc-dollar-prefix {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      pointer-events: none;
+    }
+    .fl-calc-dollar input {
+      width: 100%;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 12px 14px 12px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      outline: none;
+    }
+    .fl-calc-dollar input:focus {
+      border-color: rgba(255,107,0,0.5);
+    }
+    .fl-range {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.12);
+      outline: none;
+    }
+    .fl-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--safety-orange);
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(255,107,0,0.45);
+      border: 2px solid rgba(255,255,255,0.25);
+    }
+    .fl-range::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--safety-orange);
+      cursor: pointer;
+      border: 2px solid rgba(255,255,255,0.25);
+      box-shadow: 0 2px 8px rgba(255,107,0,0.45);
+    }
+    .fl-range::-moz-range-track {
+      height: 8px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.12);
+    }
+    .fl-calc-rate-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .fl-calc-rate-row .fl-range { flex: 1; min-width: 140px; }
+    .fl-calc-rate-badge {
+      min-width: 3.5rem;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--safety-orange);
+    }
+    .fl-calc-output {
+      text-align: center;
+      padding: 28px 20px;
+      margin: 8px 0 8px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .fl-calc-output-lead {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      margin: 0 0 8px;
+    }
+    .fl-calc-output-value {
+      margin: 0 0 8px;
+      font-family: 'Satoshi', sans-serif;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #fff;
+    }
+    .fl-calc-output-value span {
+      color: var(--safety-orange);
+    }
+    .fl-calc-output-sub {
+      margin: 0;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+    .fl-calc-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+      margin: 28px 0 24px;
+    }
+    .fl-calc-form-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
  
     /* Service number */
     .service-num {
@@ -379,6 +588,10 @@
   </style>
 </head>
 <body class="font-sans antialiased">
+
+  <div class="fl-urgency-bar" role="banner">
+    ⚡ Only 3 founding spots left for Northern Beaches tradies — locks in your rate forever.
+  </div>
  
   <div class="cursor-glow" id="cursorGlow"></div>
  
@@ -389,7 +602,7 @@
   </div>
  
   <!-- NAV -->
-  <nav class="fixed top-0 inset-x-0 z-40 backdrop-blur-xl bg-ink/70 border-b border-white/5">
+  <nav class="fixed fl-nav-below-urgency inset-x-0 z-40 backdrop-blur-xl bg-ink/70 border-b border-white/5">
     <div class="max-w-6xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
       <a href="#" class="flex items-center gap-2.5">
         <div class="w-7 h-7 rounded-full relative overflow-hidden" style="background:var(--volt)">
@@ -401,19 +614,19 @@
         <a href="#services" class="hover:text-white transition">Services</a>
         <a href="#bundle" class="hover:text-white transition">Bundle</a>
         <a href="#founder" class="hover:text-white transition">Founder</a>
-        <a href="https://calendly.com/dylankeay2/30min" class="btn-primary !py-2 !px-5 !text-sm">Book a call →</a>
+        <a href="https://calendly.com/dylankeay2/30min" class="btn-orange !py-2 !px-5 !text-sm">Claim My AI Receptionist →</a>
       </div>
-      <a href="https://calendly.com/dylankeay2/30min" class="md:hidden btn-primary !py-2 !px-4 !text-sm">Book →</a>
+      <a href="https://calendly.com/dylankeay2/30min" class="md:hidden btn-orange !py-2 !px-3 !text-[11px] leading-tight text-center max-w-[11rem]">Claim My AI Receptionist →</a>
     </div>
   </nav>
  
   <!-- HERO -->
-  <section class="relative pt-36 pb-20 lg:pt-44 lg:pb-32 overflow-hidden">
+  <section class="relative pt-44 pb-20 lg:pt-52 lg:pb-32 overflow-hidden">
     <div class="mesh-bg"></div>
     <div class="relative max-w-6xl mx-auto px-6 lg:px-10">
       <div class="reveal flex items-center gap-3 mb-10">
         <div class="w-10 h-px bg-volt"></div>
-        <span class="mono-label">Sydney · 2026 · Founding Cohort Open</span>
+        <span class="mono-label">Northern Beaches · Sydney · 2026 · Founding Cohort Open</span>
       </div>
       <h1 class="reveal delay-1 display text-[44px] sm:text-6xl lg:text-8xl mb-8 max-w-5xl">
         Your customers ring at <em>9pm Sunday</em>.<br/>
@@ -424,18 +637,18 @@
         Frontline Local builds the AI receptionist, chatbot, and website that actually answer for your trade business — across every channel, around the clock, in a real Australian voice.
       </p>
       <div class="reveal delay-3 flex flex-wrap items-center gap-3">
-        <a href="https://calendly.com/dylankeay2/30min" class="btn-primary">Book a discovery call <span aria-hidden>→</span></a>
-        <a href="#services" class="btn-secondary">See how it works</a>
+        <a href="https://calendly.com/dylankeay2/30min" class="btn-orange">See My Missed Revenue <span aria-hidden>→</span></a>
+        <a href="#lead-magnet" class="btn-secondary">Claim My AI Receptionist</a>
       </div>
 
       <!-- HEAR THE AI -->
       <div class="reveal delay-4 mt-14 glass p-6 lg:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6 max-w-2xl">
-        <button class="audio-play-btn" id="audioPlayBtn" aria-label="Play AI receptionist demo">
+        <button class="audio-play-btn" id="audioPlayBtn" aria-label="Play AI receptionist sample call">
           <svg id="playIcon" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
           <svg id="pauseIcon" width="28" height="28" viewBox="0 0 24 24" fill="white" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
         </button>
         <div>
-          <div class="mono-label mb-1">§ Demo — Hear the AI</div>
+          <div class="mono-label mb-1">§ Sample call — Hear the AI</div>
           <p class="font-satoshi font-600 text-lg text-white mb-1">Australian-voiced receptionist</p>
           <p class="text-sm text-white/50">Real call simulation — inbound trade enquiry, 9pm Sunday. This is what your customers hear instead of voicemail.</p>
           <div class="mt-3 h-1 bg-white/10 rounded-full overflow-hidden w-full max-w-xs">
@@ -458,9 +671,90 @@
           <p class="text-xs text-white/50 leading-snug">coverage — including the calls you'd otherwise miss</p>
         </div>
         <div class="bg-ink p-6">
-          <div class="font-display text-4xl lg:text-5xl mb-1">5</div>
-          <p class="text-xs text-white/50 leading-snug">founding-cohort spots. Locked-in pricing for 12 months</p>
+          <div class="font-display text-4xl lg:text-5xl mb-1">3</div>
+          <p class="text-xs text-white/50 leading-snug">founding spots left for Northern Beaches tradies. Locked-in pricing for 12 months</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERFORMANCE GUARANTEE -->
+  <section class="fl-guarantee-section" aria-labelledby="guarantee-heading">
+    <div class="relative max-w-4xl mx-auto px-6 lg:px-10 text-center">
+      <div class="reveal flex items-center justify-center gap-3 mb-6">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z" stroke="#FF6B00" stroke-width="1.75" stroke-linejoin="round"/>
+          <path d="M9 12l2 2 4-4" stroke="#FF6B00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h2 id="guarantee-heading" class="display text-3xl sm:text-4xl lg:text-5xl text-white">Zero Risk. Guaranteed.</h2>
+      </div>
+      <p class="reveal delay-1 text-lg leading-relaxed max-w-2xl mx-auto" style="color:#CCCCCC">
+        If our AI doesn't book you at least 3 qualified leads in your first 30 days, you pay nothing. Not a cent. We only win when you win.
+      </p>
+    </div>
+  </section>
+
+  <!-- LEAD MAGNET — Missed Revenue Calculator -->
+  <section id="lead-magnet" class="relative py-20 lg:py-24 border-b border-white/5">
+    <div class="relative max-w-2xl mx-auto px-6 lg:px-10">
+      <div class="reveal glass-strong p-8 lg:p-10">
+        <h2 class="font-display text-2xl lg:text-3xl text-white mb-3 text-center leading-tight">Find Out What Missed Calls Are Costing You</h2>
+        <p class="text-white/60 text-sm lg:text-base text-center mb-8 leading-relaxed">Adjust the numbers below to see your estimated monthly leak — then send your details for the full revenue report.</p>
+
+        <div id="missed-revenue-calculator" class="space-y-7 mb-2">
+          <div class="fl-calc-field">
+            <label class="fl-calc-label" for="fl-calc-calls">How many calls do you miss per week?</label>
+            <div class="fl-calc-row">
+              <input type="range" id="fl-calc-calls" class="fl-range" min="1" max="30" value="5" aria-valuemin="1" aria-valuemax="30" aria-valuenow="5" aria-describedby="fl-calc-calls-num" />
+              <input type="number" id="fl-calc-calls-num" class="fl-calc-num" min="1" max="30" value="5" inputmode="numeric" aria-label="Missed calls per week" />
+            </div>
+          </div>
+
+          <div class="fl-calc-field">
+            <label class="fl-calc-label" for="fl-calc-job">What's your average job value?</label>
+            <div class="fl-calc-dollar">
+              <span class="fl-calc-dollar-prefix" aria-hidden="true">$</span>
+              <input type="number" id="fl-calc-job" min="1" step="1" value="800" inputmode="numeric" aria-label="Average job value in dollars" />
+            </div>
+          </div>
+
+          <div class="fl-calc-field">
+            <label class="fl-calc-label" for="fl-calc-rate">What % of calls do you usually convert to jobs?</label>
+            <div class="fl-calc-rate-row">
+              <input type="range" id="fl-calc-rate" class="fl-range" min="10" max="100" value="60" step="1" aria-valuemin="10" aria-valuemax="100" aria-valuenow="60" />
+              <span id="fl-calc-rate-display" class="fl-calc-rate-badge" aria-live="polite">60%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fl-calc-output" aria-live="polite" aria-atomic="true">
+          <p class="fl-calc-output-lead">You're losing approximately</p>
+          <p id="fl-calc-monthly" class="fl-calc-output-value"><span id="fl-calc-monthly-inner">$10,320</span> per month</p>
+          <p class="fl-calc-output-sub">in missed revenue every month.</p>
+        </div>
+
+        <div class="fl-calc-divider"></div>
+        <p class="fl-calc-form-title">Get your full report</p>
+
+        <form id="missed-revenue-form" class="space-y-4">
+          <input type="hidden" name="missed_calls_per_week" id="fl-hidden-calls" value="5" />
+          <input type="hidden" name="average_job_value" id="fl-hidden-job" value="800" />
+          <input type="hidden" name="close_rate_percent" id="fl-hidden-rate" value="60" />
+          <input type="hidden" name="estimated_monthly_loss" id="fl-hidden-loss" value="10320" />
+          <div>
+            <label class="sr-only" for="fl-lead-name">Your name</label>
+            <input id="fl-lead-name" name="name" type="text" required autocomplete="name" placeholder="Your name" class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 outline-none focus:border-volt/50" />
+          </div>
+          <div>
+            <label class="sr-only" for="fl-lead-email">Email</label>
+            <input id="fl-lead-email" name="email" type="email" required autocomplete="email" placeholder="Email" class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 outline-none focus:border-volt/50" />
+          </div>
+          <div>
+            <label class="sr-only" for="fl-lead-phone">Mobile</label>
+            <input id="fl-lead-phone" name="phone" type="tel" required autocomplete="tel" placeholder="Your mobile number" class="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 outline-none focus:border-volt/50" />
+          </div>
+          <button type="submit" class="btn-orange w-full justify-center">Send Me My Full Revenue Report <span aria-hidden="true">→</span></button>
+        </form>
       </div>
     </div>
   </section>
@@ -499,11 +793,11 @@
             <i data-lucide="phone-call" class="w-6 h-6" style="color:var(--volt)"></i>
           </div>
           <span class="mono-label mb-3">Service 01 — Voice</span>
-          <h3 class="font-display text-3xl lg:text-4xl mb-5 leading-tight">AI Phone<br/>Receptionist</h3>
-          <p class="text-white/60 mb-7 leading-relaxed">High-urgency, voice-first response. Built on Vapi with sub-500ms Australian voices. Captures the lead, books the job, texts you in 60 seconds.</p>
+          <h3 class="font-display text-3xl lg:text-4xl mb-5 leading-tight">Never send a customer<br/>to voicemail again</h3>
+          <p class="text-white/60 mb-7 leading-relaxed">High-urgency, voice-first pickup. Built on Vapi with sub-500ms Australian voices. The tradie on the other end thinks they've reached your office — not a machine.</p>
           <ul class="space-y-3 text-sm mt-auto">
-            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Never miss a 9pm call again</span></li>
-            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Captures the lead, texts you in 60 seconds</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Answering calls while you're on the tools</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>See exactly what each missed call cost you — delivered by SMS in 60 seconds</span></li>
             <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Sounds Australian. Sounds like staff.</span></li>
           </ul>
         </div>
@@ -513,12 +807,12 @@
             <i data-lucide="message-square" class="w-6 h-6" style="color:var(--volt)"></i>
           </div>
           <span class="mono-label mb-3">Service 02 — Chat</span>
-          <h3 class="font-display text-3xl lg:text-4xl mb-5 leading-tight">Conversational<br/>Chatbot</h3>
-          <p class="text-white/60 mb-7 leading-relaxed">A 24/7 web agent that handles FAQs and bookings while you're on the tools. Same business rules as the voice agent. Same SMS alerts. Different channel.</p>
+          <h3 class="font-display text-3xl lg:text-4xl mb-5 leading-tight">Jobs booked while you sleep</h3>
+          <p class="text-white/60 mb-7 leading-relaxed">A 24/7 web agent that qualifies, captures, and locks in the next step while you're still on the ladder. Same rules as voice. Same SMS to your pocket.</p>
           <ul class="space-y-3 text-sm mt-auto">
-            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Answers customer questions while you're on the job</span></li>
-            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Books the lead before they bounce</span></li>
-            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Lives on your site. Your DMs. Your call.</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Never send a site visitor to a dead-end contact form</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Jobs booked while you're on the tools — or off the clock</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Lives on your site. Your DMs. Your rules.</span></li>
           </ul>
         </div>
         <div class="reveal delay-4 glow-card glass p-8 lg:p-10 flex flex-col">
@@ -527,12 +821,12 @@
             <i data-lucide="layout-template" class="w-6 h-6" style="color:var(--volt)"></i>
           </div>
           <span class="mono-label mb-3">Service 03 — Website</span>
-          <h3 class="font-display text-3xl lg:text-4xl mb-5 leading-tight">Conversion<br/>Website</h3>
-          <p class="text-white/60 mb-7 leading-relaxed">High-end, Linear-style sites built for speed and mobile-first trade leads. Replaces the 2014 template you've been embarrassed by.</p>
+          <h3 class="font-display text-3xl lg:text-4xl mb-5 leading-tight">Turn clicks into<br/>booked jobs</h3>
+          <p class="text-white/60 mb-7 leading-relaxed">Fast, mobile-first pages built so every tap turns into a call, a booking, or a captured lead — with clear tracking so you see what each enquiry was worth.</p>
           <ul class="space-y-3 text-sm mt-auto">
-            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Mobile-first, fast, built to be called</span></li>
-            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Replaces what you've been embarrassed by</span></li>
-            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Sydney-built. Sydney-tuned. Ranks where it counts.</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>See exactly what each missed call cost you — tied back to the page they came from</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Replaces the template that's been costing you jobs</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Northern Beaches & Sydney search intent, handled</span></li>
           </ul>
         </div>
       </div>
@@ -553,20 +847,20 @@
         <!-- Step 1 -->
         <div class="reveal delay-2 flex flex-col gap-4">
           <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-satoshi font-bold" style="background:var(--voltdim); border:1px solid rgba(168,85,247,0.3); color:var(--volt)">01</div>
-          <h3 class="font-satoshi font-bold text-xl">Customer calls after hours</h3>
+          <h3 class="font-satoshi font-bold text-xl">Answering calls while you're on the tools</h3>
           <p class="text-white/55 text-sm leading-relaxed">Doesn't matter if it's 9pm or 5am Sunday. The AI answers in under 500ms with an Australian voice — sounds like your front desk, not a robot.</p>
         </div>
         <!-- Step 2 -->
         <div class="reveal delay-3 flex flex-col gap-4">
           <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-satoshi font-bold" style="background:var(--voltdim); border:1px solid rgba(168,85,247,0.3); color:var(--volt)">02</div>
-          <h3 class="font-satoshi font-bold text-xl">AI qualifies and captures the lead</h3>
-          <p class="text-white/55 text-sm leading-relaxed">Gets their name, job type, location, and urgency. Books them in if calendar is connected. Handles trade-specific questions — burst pipe, hot water system, switchboard, whatever.</p>
+          <h3 class="font-satoshi font-bold text-xl">Jobs booked while you sleep</h3>
+          <p class="text-white/55 text-sm leading-relaxed">Gets their name, job type, location, and urgency. Locks in the next step if your calendar’s connected. Handles trade-specific questions — burst pipe, hot water, switchboard, whatever.</p>
         </div>
         <!-- Step 3 + SMS mockup -->
         <div class="reveal delay-4 flex flex-col gap-4">
           <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-satoshi font-bold" style="background:var(--voltdim); border:1px solid rgba(168,85,247,0.3); color:var(--volt)">03</div>
-          <h3 class="font-satoshi font-bold text-xl">You get an SMS in 60 seconds</h3>
-          <p class="text-white/55 text-sm leading-relaxed mb-4">Straight to your phone. Full lead summary while it's still warm.</p>
+          <h3 class="font-satoshi font-bold text-xl">See exactly what each missed call cost you</h3>
+          <p class="text-white/55 text-sm leading-relaxed mb-4">Straight to your phone in 60 seconds — full lead summary, urgency, and suburb so you know what you would have lost to voicemail.</p>
           <!-- SMS Phone mockup -->
           <div class="glass p-5 rounded-2xl max-w-xs">
             <div class="flex items-center gap-2 mb-4">
@@ -578,7 +872,7 @@
                 📞 <strong>New lead — Plumber enquiry</strong><br/>
                 Name: <strong>Dave M.</strong><br/>
                 Job: Burst pipe, kitchen<br/>
-                Suburb: Parramatta<br/>
+                Suburb: Manly<br/>
                 Urgency: ASAP<br/>
                 📱 0412 *** ***
               </div>
@@ -615,7 +909,7 @@
         Start with one. <em>Bundle the lot.</em>
       </h2>
       <p class="reveal delay-2 text-white/60 max-w-2xl mb-16 text-lg leading-relaxed">
-        First 5 Sydney clients get founder pricing — locked in for 12 months. After that, prices go up.
+        First 3 Northern Beaches & Sydney founder clients get locked-in pricing for 12 months. After that, prices go up.
       </p>
       <div class="grid lg:grid-cols-3 gap-6">
         <div class="reveal delay-3 glow-card glass-strong p-8 lg:p-10 flex flex-col">
@@ -632,7 +926,7 @@
             <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>SMS lead alerts to your mobile in 60 seconds</span></li>
             <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>1 Australian Sydney number included</span></li>
           </ul>
-          <a href="https://calendly.com/dylankeay2/30min" class="btn-secondary mt-auto justify-center">Book a call →</a>
+          <a href="https://calendly.com/dylankeay2/30min" class="btn-secondary mt-auto justify-center">Claim My AI Receptionist</a>
         </div>
         <div class="reveal delay-4 glow-card glass-strong p-8 lg:p-10 flex flex-col">
           <span class="mono-label mb-3">Tier 02</span>
@@ -649,7 +943,7 @@
             <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>CRM integration (ServiceM8, Jobber, etc.)</span></li>
             <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>Priority support</span></li>
           </ul>
-          <a href="https://calendly.com/dylankeay2/30min" class="btn-secondary mt-auto justify-center">Book a call →</a>
+          <a href="https://calendly.com/dylankeay2/30min" class="btn-secondary mt-auto justify-center">Claim My AI Receptionist</a>
         </div>
         <div class="reveal delay-5 glow-card p-8 lg:p-10 flex flex-col relative" style="background:linear-gradient(180deg,rgba(168,85,247,0.12) 0%,rgba(168,85,247,0.03) 100%); border:1px solid rgba(168,85,247,0.4); border-radius:20px;">
           <div class="absolute top-0 right-0 -mt-3 mr-6 px-3 py-1 text-[10px] font-mono tracking-widest uppercase rounded-full" style="background:var(--volt); color:#fff">
@@ -669,11 +963,11 @@
             <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span><strong>Website chatbot</strong> for lead capture during business hours</span></li>
             <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span><strong>New website</strong> — Linear-style, mobile-first, built for conversion</span></li>
           </ul>
-          <a href="https://calendly.com/dylankeay2/30min" class="btn-primary mt-auto justify-center">Book a call →</a>
+          <a href="https://calendly.com/dylankeay2/30min" class="btn-orange mt-auto justify-center">See My Missed Revenue <span aria-hidden>→</span></a>
         </div>
       </div>
       <p class="reveal delay-6 mt-10 text-center text-sm text-white/40 max-w-2xl mx-auto">
-        Want both add-ons on top of Standard? Premium is cheaper. We'll run the maths live on the call — no obligation.
+        Want both add-ons on top of Standard? Premium is cheaper. We'll run the numbers together — no obligation.
       </p>
     </div>
   </section>
@@ -706,7 +1000,7 @@
             <p class="text-white">Built for the tools. Runs while you use them.</p>
           </div>
           <p class="reveal delay-4 mt-10 text-sm text-white/40">
-            Based in Sydney. Building for plumbers, sparkies, builders, HVAC, roofers, and every trade that loses jobs after 5pm.
+            Based in the Northern Beaches, Sydney. Building for plumbers, sparkies, builders, HVAC, roofers, and every trade that loses jobs after 5pm.
           </p>
         </div>
       </div>
@@ -737,17 +1031,17 @@
     <div class="relative max-w-4xl mx-auto px-6 lg:px-10 text-center">
       <div class="reveal flex items-center justify-center gap-3 mb-8">
         <span class="pulse-dot"></span>
-        <span class="mono-label">§ 06 — Founding cohort · 5 spots</span>
+        <span class="mono-label">§ 06 — Founding cohort · 3 spots</span>
       </div>
       <h2 class="reveal delay-1 display text-5xl lg:text-8xl mb-8 leading-[0.95]">
-        Be one of the<br/>first <em>5</em>.
+        Be one of the<br/>first <em>3</em>.
       </h2>
       <p class="reveal delay-2 text-lg text-white/60 max-w-xl mx-auto mb-12 leading-relaxed">
-        15-minute discovery call. No pitch deck, no hard sell. Just whether this fits your business — and what it would cost.
+        15 minutes, straight talk. No pitch deck, no hard sell — just whether this fits your trade business, what missed calls are costing you, and what founder pricing looks like.
       </p>
       <div class="reveal delay-3 flex flex-wrap items-center justify-center gap-3 mb-10">
-        <a href="https://calendly.com/dylankeay2/30min" class="btn-primary" target="_blank" rel="noopener">
-          Book a discovery call <span aria-hidden>→</span>
+        <a href="https://calendly.com/dylankeay2/30min" class="btn-orange" target="_blank" rel="noopener">
+          See My Missed Revenue <span aria-hidden>→</span>
         </a>
         <a href="mailto:dylan@frontlinelocal.com.au" class="btn-secondary">
           <i data-lucide="mail" class="w-4 h-4"></i> dylan@frontlinelocal.com.au
@@ -774,7 +1068,7 @@
           <a href="#services" class="hover:text-white transition">Services</a>
           <a href="#bundle" class="hover:text-white transition">Pricing</a>
           <a href="#founder" class="hover:text-white transition">Founder</a>
-          <a href="https://calendly.com/dylankeay2/30min" class="hover:text-white transition">Book a call</a>
+          <a href="https://calendly.com/dylankeay2/30min" class="hover:text-white transition">See My Missed Revenue</a>
           <span>·</span>
           <span class="font-mono">© 2026 · ABN registered · Sydney AU</span>
         </div>
@@ -856,6 +1150,117 @@
         pauseIcon.style.display = 'none';
         playBtn.classList.remove('playing');
         progress.style.width = '0%';
+      });
+    }
+
+    (function initMissedRevenueCalculator() {
+      const callsRange = document.getElementById('fl-calc-calls');
+      const callsNum = document.getElementById('fl-calc-calls-num');
+      const jobInput = document.getElementById('fl-calc-job');
+      const rateRange = document.getElementById('fl-calc-rate');
+      const rateDisplay = document.getElementById('fl-calc-rate-display');
+      const monthlyInner = document.getElementById('fl-calc-monthly-inner');
+      const hiddenCalls = document.getElementById('fl-hidden-calls');
+      const hiddenJob = document.getElementById('fl-hidden-job');
+      const hiddenRate = document.getElementById('fl-hidden-rate');
+      const hiddenLoss = document.getElementById('fl-hidden-loss');
+      if (!callsRange || !callsNum || !jobInput || !rateRange || !monthlyInner) return;
+
+      function clamp(n, min, max) {
+        return Math.min(max, Math.max(min, n));
+      }
+
+      function formatMoney(n) {
+        return Math.round(n).toLocaleString('en-AU');
+      }
+
+      function parseCalls() {
+        let c = parseInt(callsNum.value, 10);
+        if (Number.isNaN(c)) c = parseInt(callsRange.value, 10) || 5;
+        return clamp(c, 1, 30);
+      }
+
+      function parseJob() {
+        let j = parseFloat(String(jobInput.value).replace(/,/g, ''));
+        if (Number.isNaN(j) || j < 1) j = 800;
+        return j;
+      }
+
+      function commitCalls() {
+        const c = parseCalls();
+        callsNum.value = String(c);
+        callsRange.value = String(c);
+        callsRange.setAttribute('aria-valuenow', String(c));
+      }
+
+      function update() {
+        const calls = parseCalls();
+        callsRange.value = String(calls);
+        callsRange.setAttribute('aria-valuenow', String(calls));
+
+        const job = parseJob();
+        let rate = parseInt(rateRange.value, 10);
+        if (Number.isNaN(rate)) rate = 60;
+        rate = clamp(rate, 10, 100);
+        rateRange.value = String(rate);
+        rateRange.setAttribute('aria-valuenow', String(rate));
+        if (rateDisplay) rateDisplay.textContent = rate + '%';
+
+        const monthly = calls * 4.3 * job * (rate / 100);
+        const rounded = Math.round(monthly);
+        monthlyInner.textContent = '$' + formatMoney(monthly);
+
+        if (hiddenCalls) hiddenCalls.value = String(calls);
+        if (hiddenJob) hiddenJob.value = String(Math.round(job));
+        if (hiddenRate) hiddenRate.value = String(rate);
+        if (hiddenLoss) hiddenLoss.value = String(rounded);
+      }
+
+      callsRange.addEventListener('input', function () {
+        callsNum.value = callsRange.value;
+        callsRange.setAttribute('aria-valuenow', callsRange.value);
+        update();
+      });
+      callsNum.addEventListener('input', function () {
+        if (callsNum.value === '') return;
+        update();
+      });
+      callsNum.addEventListener('blur', function () {
+        if (callsNum.value === '' || Number.isNaN(parseInt(callsNum.value, 10))) {
+          callsNum.value = callsRange.value || '5';
+        }
+        commitCalls();
+        update();
+      });
+      jobInput.addEventListener('input', function () {
+        if (jobInput.value === '') return;
+        update();
+      });
+      jobInput.addEventListener('blur', function () {
+        if (jobInput.value === '' || parseFloat(jobInput.value) < 1) jobInput.value = '800';
+        update();
+      });
+      rateRange.addEventListener('input', update);
+
+      commitCalls();
+      update();
+    })();
+
+    const missedRevenueForm = document.getElementById('missed-revenue-form');
+    if (missedRevenueForm) {
+      missedRevenueForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const fd = new FormData(this);
+        const lines = ['Missed revenue calculator — full report request', ''];
+        fd.forEach(function (value, key) {
+          lines.push(key + ': ' + value);
+        });
+        const body = lines.join('\n');
+        window.location.href =
+          'mailto:dylan@frontlinelocal.com.au?subject=' +
+          encodeURIComponent('Full revenue report request') +
+          '&body=' +
+          encodeURIComponent(body);
       });
     }
 
