@@ -1,7 +1,7 @@
 (function () {
   const WORKER_URL = 'https://frontline-chatbot-frontlinelocal.dylankeay2.workers.dev/chat';
   const BRAND_COLOR = '#1a73e8';
-  const OPENING_MESSAGE = "Hi! I'm the receptionist for [BUSINESS_NAME]. What can I help you with today?";
+  const OPENING_MESSAGE = "Hi! I'm the assistant for Frontline Local. Want to see how an AI receptionist works for your trade business — or book a discovery call?";
 
   let messages = [];
   let isOpen = false;
@@ -225,7 +225,7 @@
     <div id="fl-chat-header">
       <div class="fl-avatar">💬</div>
       <div class="fl-title">
-        <div>[BUSINESS_NAME]</div>
+        <div>Frontline Local</div>
         <div class="fl-subtitle">AI Receptionist · Usually replies instantly</div>
       </div>
       <button id="fl-close-btn" aria-label="Close chat">
