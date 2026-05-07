@@ -7,7 +7,17 @@
   let isOpen = false;
   let isTyping = false;
 
-  // ── Inject styles ──────────────────────────────────────────────────────────
+  // ── Inject Calendly assets and styles ─────────────────────────────────────
+  const calendlyCss = document.createElement('link');
+  calendlyCss.rel = 'stylesheet';
+  calendlyCss.href = 'https://assets.calendly.com/assets/external/widget.css';
+  document.head.appendChild(calendlyCss);
+
+  const calendlyScript = document.createElement('script');
+  calendlyScript.src = 'https://assets.calendly.com/assets/external/widget.js';
+  calendlyScript.async = true;
+  document.head.appendChild(calendlyScript);
+
   const style = document.createElement('style');
   style.textContent = `
     #fl-chat-btn {
@@ -255,7 +265,7 @@
   function addMessage(role, text) {
     const div = document.createElement('div');
     div.className = `fl-msg ${role}`;
-    div.textContent = text;
+    div.innerHTML = text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" style="color:inherit;text-decoration:underline;">$1</a>');
     messagesEl.appendChild(div);
     messagesEl.scrollTop = messagesEl.scrollHeight;
     return div;
@@ -278,6 +288,12 @@
   function setInputEnabled(enabled) {
     inputEl.disabled = !enabled;
     sendBtn.disabled = !enabled;
+  }
+
+  function injectCalendly() {
+    if (window.Calendly && typeof window.Calendly.initPopupWidget === 'function') {
+      window.Calendly.initPopupWidget({ url: 'https://calendly.com/dylankeay2/30min' });
+    }
   }
 
   async function sendMessage() {
@@ -305,6 +321,9 @@
 
       const reply = data.response || data.error || 'Something went wrong — please try again.';
       addMessage('bot', reply);
+      if (reply.includes('calendly.com')) {
+        injectCalendly();
+      }
       messages.push({ role: 'assistant', content: reply });
     } catch (err) {
       hideTyping();
