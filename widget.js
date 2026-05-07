@@ -32,7 +32,7 @@
 
     #fl-chat-window {
       position: fixed;
-      bottom: 92px;
+      bottom: 110px;
       right: 24px;
       width: 360px;
       max-width: calc(100vw - 32px);
@@ -177,6 +177,8 @@
       max-height: 80px;
       overflow-y: auto;
       transition: border-color 0.15s;
+      color: #111;
+      background: #fff;
     }
     #fl-input:focus { border-color: ${BRAND_COLOR}; }
     #fl-input::placeholder { color: #111; opacity: 1; }
