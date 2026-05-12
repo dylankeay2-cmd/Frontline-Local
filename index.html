@@ -841,12 +841,12 @@
     <div class="mesh-bg" style="opacity:0.4"></div>
     <div class="relative max-w-6xl mx-auto px-6 lg:px-10">
       <div class="reveal flex items-center gap-3 mb-6">
-        <span class="mono-label">§ 01 — Triple Threat</span>
+        <span class="mono-label">§ 01 — The Full Arsenal</span>
       </div>
       <h2 class="reveal delay-1 display text-4xl lg:text-7xl mb-20 max-w-4xl">
-        Three services. <em>One front desk</em> for everything inbound.
+        Four services. <em>One front desk</em> for everything inbound.
       </h2>
-      <div class="grid lg:grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
         <div class="reveal delay-2 glow-card glass p-8 lg:p-10 flex flex-col">
           <div class="flex items-start justify-between mb-8">
             <div class="service-num">01</div>
@@ -887,6 +887,20 @@
             <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>See exactly what each missed call cost you — tied back to the page they came from</span></li>
             <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Replaces the template that's been costing you jobs</span></li>
             <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Northern Beaches & Sydney search intent, handled</span></li>
+          </ul>
+        </div>
+        <div class="reveal delay-5 glow-card glass p-8 lg:p-10 flex flex-col">
+          <div class="flex items-start justify-between mb-8">
+            <div class="service-num">04</div>
+            <i data-lucide="file-text" class="w-6 h-6" style="color:var(--volt)"></i>
+          </div>
+          <span class="mono-label mb-3">Service 04 — Quoting</span>
+          <h3 class="font-display text-3xl lg:text-4xl mb-5 leading-tight">Instant quotes.<br/>No phone tag.</h3>
+          <p class="text-white/60 mb-7 leading-relaxed">Customers chat on your website, describe their job, and get an itemised quote emailed to them in minutes — automatically. You get a notification. No staff required.</p>
+          <ul class="space-y-3 text-sm mt-auto">
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Quotes generated from your actual pricing — you control every figure</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>Professional HTML quote emailed to the customer automatically</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 w-1 h-1 rounded-full bg-volt shrink-0"></span><span>You get notified the moment a quote is sent — no leads slip through</span></li>
           </ul>
         </div>
       </div>
@@ -1093,8 +1107,66 @@
           <a onclick="Calendly.initPopupWidget({url:'https://calendly.com/dylankeay2/30min'});return false;" href="" class="btn-orange mt-auto justify-center">See My Missed Revenue <span aria-hidden>→</span></a>
         </div>
       </div>
-      <p class="reveal delay-6 mt-10 text-center text-sm text-white/40 max-w-2xl mx-auto">
-        Voice + Website bought separately = $550/month. Premium bundles everything including chat for $500/month. We'll run the numbers together — no obligation.
+
+      <!-- QUOTING AGENT — standalone card -->
+      <div class="reveal mt-6 glow-card glass-strong p-8 lg:p-12 flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12 relative" style="border-radius:20px;">
+        <div class="lg:w-64 shrink-0">
+          <span class="mono-label mb-3 block">Quoting Agent</span>
+          <h3 class="font-display text-4xl lg:text-5xl mb-3">Quoting<br/>Agent</h3>
+          <p class="text-white/60 text-sm leading-relaxed">Customers describe their job and get an itemised quote emailed automatically. You get notified. No staff required.</p>
+        </div>
+        <div class="lg:w-56 shrink-0">
+          <div class="mb-1">
+            <span class="font-display text-5xl lg:text-6xl text-white">From $500</span>
+            <span class="text-white/40 text-sm ml-2">setup</span>
+          </div>
+          <div class="text-white/60 mb-2 text-sm">+ from $200/month ongoing</div>
+          <div class="text-xs mono-label mt-3" style="color:var(--volt)">Founder rate locked 12 months</div>
+        </div>
+        <ul class="flex-1 space-y-3 text-sm border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0 lg:pl-10">
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>AI-powered quoting via website chat or SMS</span></li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>Professional HTML quote emailed to the customer in minutes</span></li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>Pricing pulled from your actual rates — you control every figure</span></li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:var(--volt)"></i><span>Lead notification to your mobile the moment a quote is sent</span></li>
+        </ul>
+        <div class="lg:w-52 shrink-0 flex flex-col gap-3">
+          <a onclick="Calendly.initPopupWidget({url:'https://calendly.com/dylankeay2/30min'});return false;" href="" class="btn-primary justify-center">Claim My Spot <span aria-hidden>→</span></a>
+          <p class="text-xs text-white/30 text-center mono-label">First 3 Sydney clients — locked 12 months</p>
+        </div>
+      </div>
+
+      <!-- ULTIMATE BUNDLE — standalone featured card -->
+      <div class="reveal mt-6 glow-card p-8 lg:p-12 flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12 relative" style="background:linear-gradient(135deg,rgba(245,158,11,0.10) 0%,rgba(245,158,11,0.04) 60%,rgba(168,85,247,0.06) 100%); border:1px solid rgba(245,158,11,0.45); border-radius:20px;">
+        <div class="absolute top-0 right-0 -mt-3 mr-6 px-3 py-1 text-[10px] font-mono tracking-widest uppercase rounded-full" style="background:#F59E0B; color:#000; font-weight:700">
+          ★ Maximum Output
+        </div>
+        <div class="lg:w-64 shrink-0">
+          <span class="mono-label mb-3 block" style="color:#F59E0B">Tier 05</span>
+          <h3 class="font-display text-4xl lg:text-5xl mb-3" style="color:#fff">Ultimate</h3>
+          <p class="text-white/60 text-sm leading-relaxed">Voice. Chat. Site. Instant quotes. The whole stack — nothing leaks, nothing waits, nothing misses.</p>
+        </div>
+        <div class="lg:w-56 shrink-0">
+          <div class="mb-1">
+            <span class="font-display text-5xl lg:text-6xl text-white">$2,000</span>
+            <span class="text-white/40 text-sm ml-2">setup</span>
+          </div>
+          <div class="text-white/60 mb-2 text-sm">+ $600/month ongoing</div>
+          <div class="text-xs mono-label mt-3" style="color:#F59E0B">Founder rate locked 12 months</div>
+        </div>
+        <ul class="flex-1 space-y-3 text-sm border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0 lg:pl-10">
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:#F59E0B"></i><span>Everything in Premium (Voice + Chat + Website + calendar booking), plus —</span></li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:#F59E0B"></i><span>AI Quoting Agent — customers describe their job, get an itemised quote emailed automatically</span></li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:#F59E0B"></i><span>Pricing database built from your actual rates — you control every figure</span></li>
+          <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 mt-0.5 shrink-0" style="color:#F59E0B"></i><span>Lead notification to your mobile — call, chat, and quote all in one pipeline</span></li>
+        </ul>
+        <div class="lg:w-52 shrink-0 flex flex-col gap-3">
+          <a onclick="Calendly.initPopupWidget({url:'https://calendly.com/dylankeay2/30min'});return false;" href="" class="btn-orange justify-center" style="background:#F59E0B; box-shadow:0 14px 40px -12px rgba(245,158,11,0.4)">Claim My Spot <span aria-hidden>→</span></a>
+          <p class="text-xs text-white/30 text-center mono-label">3 founder spots total</p>
+        </div>
+      </div>
+
+      <p class="reveal mt-10 text-center text-sm text-white/40 max-w-2xl mx-auto">
+        Voice + Website bought separately = $450/month. Premium bundles everything for $500/month. Ultimate adds the AI Quoting Agent for $600/month. We'll run the numbers together — no obligation.
       </p>
     </div>
   </section>
